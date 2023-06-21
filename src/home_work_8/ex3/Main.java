@@ -1,6 +1,7 @@
 package home_work_8.ex3;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +14,13 @@ public class Main {
             System.out.println("Введіть назву " + (i + 1) + "-го магазину, в якому продається товар:");
             String productStoreName = sc.nextLine();
             System.out.println("Введіть вартість " + (i + 1) + "-го товару у гривнях:");
-            double productCost = sc.nextDouble();
+            double productCost;
+            try {
+                productCost = sc.nextDouble();
+            }catch (InputMismatchException ex){
+                System.err.println("Помилка вводу. Встановлено значення за замовчуванням - 0 ");
+                productCost = 0;
+            }
             sc.nextLine();
             arrray[i] = new Price(productName, productStoreName, productCost);
         }
